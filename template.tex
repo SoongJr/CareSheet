@@ -1,0 +1,135 @@
+%
+%% Document Class (Koma Script) -----------------------------------------
+%% Doc: scrguien.pdf
+\documentclass[%
+  %draft=true,     % draft mode (no images, layout errors shown)
+  draft=false,     % final mode
+  %%% --- Paper Settings ---
+  paper=a4,
+  paper=portrait, % landscape
+  pagesize=auto, % driver
+  %%% --- Base Font Size ---
+  fontsize=12pt,%
+  %%% --- Koma Script Version ---
+  version=last, %
+  %%% --- Global Package Options ---
+  ngerman, % language (passed to babel and other packages)
+  % parskip,  % use empty lines between paragraphs instead of indenting the first line
+  numbers=noenddot,
+  listof=totoc,        % add lists of figures and tables to Table of Contents
+  bibliography=totoc,  % add cited works to Table of Contents
+]{scrreprt} % Classes: scrartcl, scrreprt, scrbook\usepackage[ngerman]{babel}
+
+\newif\iflistoffigures{}
+\newif\iflistoftables{}
+\newif\iflistofformeln{}
+\newif\ifglossary{}
+\newif\ifbibliography{}
+
+% include settings.tex
+\input{settings}
+
+% include packages and other general preamble
+\input{preamble/preamble}
+
+% auxiliary commands
+\input{preamble/commands}
+
+% Style settings
+\input{preamble/styles}
+
+\ifglossary{}
+  \input{content/glossar}
+\fi
+
+% Literature, if you ant to quote any (because why not?)
+\addbibresource{literature.bib}
+
+% BEGIN DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TITEL PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{preamble/title-page}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\normalsize
+
+\begin{spacing}{1.0} % single-line spacing for content tables
+
+  % Inhaltsverzeichnis %%%%%%%%%%%%%%%%%%%%%%
+  \tableofcontents
+
+  % Abbildungsverzeichnis %%%%%%%%%%%%%%%%%%%%%%
+  \iflistoffigures{}
+    \listoffigures
+  \fi
+
+  % Tabellenverzeichnis %%%%%%%%%%%%%%%%%%%%%%
+  \iflistoftables{}
+    \listoftables
+  \fi
+
+  \ifglossary{}
+    % Abkürzungsverzeichnis %%%%%%%%%%%%%%%%%%%%%%
+    % (nur wenn beim usepackage von glossaries-extra die Option "abbreviations" angegeben wurde)
+    \makeatletter
+    \@ifundefined{printabbreviations}{}{\printabbreviations[title=Abkürzungsverzeichnis]}
+    \makeatother
+
+    % sonstiges Glossar
+    \printglossary[title=Glossar]
+  \fi
+
+  % Formelverzeichnis %%%%%%%%%%%%%%%%%%%%%%
+  \iflistofformeln{}
+    \listof{Formel}{Formelübersicht}
+    \newpage
+  \fi
+
+
+\end{spacing}
+
+\clearpage
+
+\newcounter{romanPagenumber}
+\setcounter{romanPagenumber}{\value{page}} % Roemische Seitenanzahl speichern.
+
+% \nocite{*} % enable this if you want to list all your literature, even if it wasn't actually cited in your text
+
+\pagenumbering{arabic}
+
+\begin{spacing}{1.5} % main content gets 1.5 line spacing
+
+  % separate files for each pet
+  \include{content/ants}
+  \include{content/roaches}
+  \include{content/python}
+  \include{content/cat}
+
+\end{spacing}
+
+\clearpage
+
+\pagestyle{plain}
+
+
+% Literaturverzeichniss - Ab hier wieder Roemische Seitenzahlen
+
+\pagenumbering{roman}
+\ifbibliography{}
+  \setcounter{page}{\theromanPagenumber}
+  %\bibliographystyle{apalike}
+  %\bibliography{literatur}
+  \printbibliography[title=\prefbiblioname]
+  \onehalfspacing{}
+  \clearpage
+\fi
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\end{document}
+% chktex 17 ignore deliberately unmatched numnber of parentheses (there's a single ')' in the preamble)
