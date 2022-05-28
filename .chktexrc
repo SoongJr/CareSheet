@@ -259,8 +259,8 @@ UserWarnRegex
   (?!#-2:Vertical! rules! in! tables! are! ugly)\\begin\{(array|tabularx?\*?)\}(\[.*\])?\{.*\|.*\}
 
   # warn user about TODOs left to resolve
-  (?!#10:! unresolved! TODO)\\todo\{.*\}
-  (?!#10:! missing! citation)\\citationneeded([^[:alnum:]}]|\{\}|$)
+#   (?!#10:! unresolved! TODO)\\todo\{.*\}
+#   (?!#10:! missing! citation)\\citationneeded([^[:alnum:]}]|\{\}|$)
 }
 
 
