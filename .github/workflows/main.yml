@@ -4,7 +4,7 @@ on:
   pull_request:
   workflow_dispatch:
 env:
-  file: template # root tex file to compile (without extension)
+  file: CareSheet # root tex file to compile (without extension)
                  # If you renamed your root tex file - originally "template.tex" - (e.g. to get a nice PDF name),
                  # simply also adjust the filename here.
 jobs:

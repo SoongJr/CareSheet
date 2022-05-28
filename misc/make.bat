@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 
 REM set some variables
-set "filename=template"
+set "filename=CareSheet"
 set "pdflatex=pdflatex"
 set "biber=biber"
 set "makeglossaries=makeglossaries"

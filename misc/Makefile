@@ -1,4 +1,4 @@
-filename = template
+filename = CareSheet
 
 neededfiles = abkuerzungen.tex einleitung.tex einstellungen.tex grundlagen.tex hauptteil.tex schluss.tex literatur.bib
 
