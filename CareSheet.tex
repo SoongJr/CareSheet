@@ -20,6 +20,8 @@
   bibliography=totoc,  % add cited works to Table of Contents
 ]{scrreprt} % Classes: scrartcl, scrreprt, scrbook\usepackage[ngerman]{babel}
 
+\newif\iftitlepage{}
+\newif\iftableofcontents{}
 \newif\iflistoffigures{}
 \newif\iflistoftables{}
 \newif\iflistofformeln{}
@@ -51,16 +53,26 @@
 
 % TITEL PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{preamble/title-page}
+\iftitlepage{}
+  \input{preamble/title-page}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \normalsize
 
+% start with a checklist for each visit
+\begin{spacing}{1.5} % main content gets 1.5 line spacing
+  \include{content/checklist}
+\end{spacing}
+
+
 \begin{spacing}{1.0} % single-line spacing for content tables
 
   % Inhaltsverzeichnis %%%%%%%%%%%%%%%%%%%%%%
-  \tableofcontents
+  \iftableofcontents{}
+    \tableofcontents
+  \fi
 
   % Abbildungsverzeichnis %%%%%%%%%%%%%%%%%%%%%%
   \iflistoffigures{}
@@ -88,8 +100,6 @@
     \listof{Formel}{Formelübersicht}
     \newpage
   \fi
-
-
 \end{spacing}
 
 \clearpage
@@ -102,13 +112,10 @@
 \pagenumbering{arabic}
 
 \begin{spacing}{1.5} % main content gets 1.5 line spacing
-
-  % separate files for each pet
+  % separate files for each pet with additional details
   \include{content/ants}
   \include{content/roaches}
   \include{content/python}
-  \include{content/cat}
-
 \end{spacing}
 
 \clearpage

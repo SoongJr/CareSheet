@@ -17,8 +17,10 @@
 \usepackage[automark,headsepline]{scrlayer-scrpage}
 
 \clearpairofpagestyles{}
-\cfoot[\pagemark]{\pagemark}
-\lehead{\headmark}
-\rohead{\headmark}
+\ifoot[Version \Version{}]{Version \Version{}}
+\cfoot[\pagemark{}]{\pagemark{}}
+\ofoot[\today{}]{ \today{}}
+\lehead{\headmark{}}
+\rohead{\headmark{}}
 
 \pagestyle{scrheadings}

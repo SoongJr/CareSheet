@@ -5,12 +5,13 @@
 \usepackage{babel}
 \usepackage{supertabular}
 \usepackage{wrapfig}
-\usepackage{multirow}
+\usepackage{multirow, multicol}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{scrhack}  % fix float warning of KOMA produced when including listings
 \usepackage{listings}
 \usepackage{mathptmx}
 \usepackage{geometry}
+\usepackage{enumitem, amssymb}  % to define todo lists with checkboxes
 \usepackage{helvet}
 \usepackage{courier}
 \usepackage{setspace}
@@ -86,3 +87,7 @@
 
 \renewcommand{\familydefault}{\rmdefault}
 \newcommand{\bflabel}[1]{\normalfont{\normalsize{#1}}\hfill}
+
+% define list environments for todo checklists
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=\(\square{}\)}
