@@ -89,5 +89,10 @@
 \newcommand{\bflabel}[1]{\normalfont{\normalsize{#1}}\hfill}
 
 % define list environments for todo checklists
-\newlist{todolist}{itemize}{2}
-\setlist[todolist]{label=\(\square{}\)}
+\newlist{todolist}{itemize}{1}
+\setlist[todolist]{align=left, leftmargin=*, label=\(\square{}\)}
+% additional list with 2 and 3 checkboxes
+\newlist{todolistx2}{itemize}{1}
+\setlist[todolistx2]{align=left, leftmargin=*, label=\(\square{}\hspace{.75em}\square{}\)}
+\newlist{todolistx3}{itemize}{1}
+\setlist[todolistx3]{align=left, leftmargin=*, label=\(\square{}\hspace{.75em}\square{}\hspace{.75em}\color{lightgray}\square{}\)}
